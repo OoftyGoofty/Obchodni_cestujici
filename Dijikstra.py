@@ -1,47 +1,45 @@
 import heapq
 
-def dijkstra(graph, start):
-    """
-    Dijkstra's algorithm to find the shortest path from a starting node to all other nodes in a graph.
+def dijkstra(graf, pocatecni):
+    vzdalenost = {vrchol: float('infinity') for vrchol in graf}
+    predchozi = {vrchol: '' for vrchol in graf}
     
-    Parameters:
-    graph (dict): The graph in the form of adjacency list.
-    start: The starting node.
+    vzdalenost[pocatecni] = 0
+    queue = [(0, pocatecni)]
     
-    Returns:
-    dict: A dictionary containing the shortest distances from the starting node to all other nodes.
-    """
-    distances = {node: float('inf') for node in graph}
-    distances[start] = 0
-    
-    priority_queue = [(0, start)]
-    
-    while priority_queue:
-        current_distance, current_node = heapq.heappop(priority_queue)
-        
-        if current_distance > distances[current_node]:
+    while queue:
+        aktualni_vzdalenost, aktualni_vrchol = heapq.heappop(queue)
+
+        if aktualni_vzdalenost > vzdalenost[aktualni_vrchol]:
             continue
+
+        for soused, cena in graf[aktualni_vrchol].items():
+            nova_vzdalenost = aktualni_vzdalenost + cena
+
+            if nova_vzdalenost < vzdalenost[soused]:
+                vzdalenost[soused] = nova_vzdalenost
+                predchozi[soused] = aktualni_vrchol
+                heapq.heappush(queue, (vzdalenost[soused], soused))
+
+    return vzdalenost, predchozi
+
+
+def najdiNejkratsiCestu(graph, start_vrchol, konec_vrchol):
+    x, predchozi_od_startu = dijkstra(graph, start_vrchol)
         
-        for neighbor, weight in graph[current_node].items():
-            distance = current_distance + weight
-            
-            if distance < distances[neighbor]:
-                distances[neighbor] = distance
-                heapq.heappush(priority_queue, (distance, neighbor))
-    
-    return distances
+    cesta = [konec_vrchol]
+    while cesta[-1] != start_vrchol:
+        cesta.append(predchozi_od_startu[cesta[-1]])
+        
+    return cesta[::-1]
 
-# Test the function
-graph = {
-    'A': {'B': 3, 'C': 2},
-    'B': {'A': 3, 'C': 1, 'D': 6},
-    'C': {'A': 2, 'B': 1, 'D': 2},
-    'D': {'B': 6, 'C': 2}
-}
 
-start_node = 'A'
-shortest_distances = dijkstra(graph, start_node)
+def vzdalenostiACesty(graf):
+    vzdalenosti_a_cesty = []
+    for vrchol in graf:
+        vzdal, pred = dijkstra(graf, vrchol)
+        for bod in vzdal:
+            vzdal[bod] = (vzdal[bod], najdiNejkratsiCestu(graf, vrchol, bod))
+        vzdalenosti_a_cesty.append(vzdal)
 
-print("Shortest distances from node", start_node)
-for node, distance in shortest_distances.items():
-    print("Node:", node, "Distance:", distance)
+    return vzdalenosti_a_cesty
