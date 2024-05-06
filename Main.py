@@ -66,6 +66,9 @@ for cesta in cesty:
     key = cena_cesty
     obchodni_cesty.setdefault(key, [])
     obchodni_cesty[cena_cesty].append(trasa_cesty)
+
+# Remove duplicate paths
+# Sort dicts. by key and show only the lowest
         
 for cesta in obchodni_cesty:
     print(cesta, ":" , obchodni_cesty[cesta] , "\n")
