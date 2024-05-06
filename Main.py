@@ -23,6 +23,7 @@ vrcholy_index = {
     'E': 4
 }
 
+# convert from matice to ->
 graf = {
   'A': {'B': 2, 'D': 6, 'E': 2},
   'B': {'A': 2, 'D': 3, 'E': 6},
@@ -31,6 +32,7 @@ graf = {
   'E': {'A': 2, 'B': 6, 'D': 2},
 }
 
+# make into function
 cesty = cesty(vrcholy, 'A')
 vzdalenosti_a_cesty = Dijikstra.vzdalenostiACesty(graf)
 obchodni_cesty = {}
