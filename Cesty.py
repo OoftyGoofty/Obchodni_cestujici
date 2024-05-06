@@ -1,9 +1,9 @@
 from Dijikstra import vzdalenostiACesty
-import itertools
+from itertools import permutations
 
-def cestyGen(pole, start):
-    pole.remove(start)
-    permutace = list(itertools.permutations(pole))
+def cestyGen(vrcholy, start):
+    vrcholy.remove(start)
+    permutace = list(permutations(vrcholy))
     cesty = []
     
     ###
