@@ -1,5 +1,5 @@
 from Cesty import obchodniCesty
-from Convert import convert, convertIndex
+from Convert import convert, vytvorIndex
 
 def printAll(obchodni_cesty): # Vypiš všechny cesty
     for cesta in obchodni_cesty:
@@ -47,9 +47,9 @@ matice3 = [
 ]
 graf3 = convert(matice3, vrcholy.copy())
 
-obchodni_cesty1 = dict(sorted(obchodniCesty(vrcholy.copy(), convertIndex(vrcholy), start, graf1).items()))
-obchodni_cesty2 = dict(sorted(obchodniCesty(vrcholy.copy(), convertIndex(vrcholy), start, graf2).items()))
-obchodni_cesty3 = dict(sorted(obchodniCesty(vrcholy.copy(), convertIndex(vrcholy), start, graf3).items()))
+obchodni_cesty1 = dict(sorted(obchodniCesty(vrcholy.copy(), vytvorIndex(vrcholy), start, graf1).items()))
+obchodni_cesty2 = dict(sorted(obchodniCesty(vrcholy.copy(), vytvorIndex(vrcholy), start, graf2).items()))
+obchodni_cesty3 = dict(sorted(obchodniCesty(vrcholy.copy(), vytvorIndex(vrcholy), start, graf3).items()))
 
 printMin(obchodni_cesty1)
 printMin(obchodni_cesty2)

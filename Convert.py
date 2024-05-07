@@ -1,5 +1,5 @@
 def convert(matice, vrcholy): # Prřevod matice na dictionary sousedních bodů
-    vrcholy_index = {y: x for x, y in convertIndex(vrcholy).items()}
+    vrcholy_index = {y: x for x, y in vytvorIndex(vrcholy).items()}
     graf = {}
     
     ###
@@ -17,7 +17,7 @@ def convert(matice, vrcholy): # Prřevod matice na dictionary sousedních bodů
     
     return graf
 
-def convertIndex(vrcholy): # Vytvoření dictionary indexů vrcholů
+def vytvorIndex(vrcholy): # Vytvoření dictionary indexů vrcholů
     vrcholy_index = {}
     
     ###
