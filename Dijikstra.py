@@ -28,10 +28,10 @@ def dijkstra(graf, pocatecni):
     return vzdalenost, predchozi
 
 
-def najdiNejkratsiCestu(graph, start_vrchol, konec_vrchol):
+def najdiNejkratsiCestu(graph, start_vrchol, cil_vrchol):
     x, predchozi_od_startu = dijkstra(graph, start_vrchol)
         
-    cesta = [konec_vrchol]
+    cesta = [cil_vrchol]
     
     ###
     while cesta[-1] != start_vrchol:

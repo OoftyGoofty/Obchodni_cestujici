@@ -1,11 +1,11 @@
 from Cesty import obchodniCesty
 from Convert import convert, convertIndex
 
-def printAll(obchodni_cesty):
+def printAll(obchodni_cesty): # Vypiš všechny cesty
     for cesta in obchodni_cesty:
         print(cesta, ":" , obchodni_cesty[cesta] , "\n")
         
-def printMin(obchodni_cesty):
+def printMin(obchodni_cesty): # Vypiš nejkratší cestu
     for cesta in obchodni_cesty:
         if len(obchodni_cesty[cesta]) > 1:
             print("Nejkratší cesty stojí" , cesta, "a jsou to:")
