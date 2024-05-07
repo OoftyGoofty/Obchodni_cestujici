@@ -42,33 +42,33 @@ def obchodniCesty(vrcholy, vrcholy_index, start, graf):
     vzdalenosti_a_cesty = vzdalenostiACesty(graf)
     obchodni_cesty = {}
 
-    ###
-    for cena in cesty:
+    ### Projdi všechny permutace cest
+    for cesta in cesty:
         trasa_cesty = []
         cena_cesty = 0
         
-        ###
+        ### 
         i = 1
-        while i < len(cena):
+        while i < len(cesta):
             
-            ceny_a_cesty_z_vrcholu = vzdalenosti_a_cesty[vrcholy_index[cena[i - 1]]]
-            cil = ceny_a_cesty_z_vrcholu[cena[i]] 
+            ceny_a_cesty_z_vrcholu = vzdalenosti_a_cesty[vrcholy_index[cesta[i - 1]]]
+            cil = ceny_a_cesty_z_vrcholu[cesta[i]] 
             
             cena_cesty = cena_cesty + cil[0] 
             trasa_cesty.extend(cil[1]) 
             
-            ###
+            ### Odstraň bod z cesty pokud jsme jím již prošli
             x = i
-            while x < len(cena):
-                if cena[x] in trasa_cesty and cena[x] != cena[i] and cena[x] != cena[-1]:
-                    cena.pop(x)
+            while x < len(cesta):
+                if cesta[x] in trasa_cesty and cesta[x] != cesta[i] and cesta[x] != cesta[-1]:
+                    cesta.pop(x)
                 x += 1
             ###
             
             i += 1
         ###
         
-        ###
+        ### Odstraň 2 opakované body vedle sebe
         y = 1
         while y < len(trasa_cesty):
             if trasa_cesty[y] == trasa_cesty[y - 1]:
@@ -76,8 +76,8 @@ def obchodniCesty(vrcholy, vrcholy_index, start, graf):
             y += 1
         ###
             
-        key = cena_cesty
-        obchodni_cesty.setdefault(key, [])
+        klic = cena_cesty
+        obchodni_cesty.setdefault(klic, [])
         obchodni_cesty[cena_cesty].append(trasa_cesty)
     ###
     
